@@ -171,25 +171,29 @@ function AdminOrders() {
                       </div>
                     </td>
                     <td className="py-3 px-0 text-left">
-                      {order.items.map((item, index) => (
+                      { order.items.map((item, index) => (
+                        
                         <div key={index} className="flex items-center">
+                          
                           <div className="mr-2">
+                          {console.log(JSON.stringify(item))}
                             <img
                               className="w-6 h-6 rounded-full"
-                              src={item.product.thumbnail}
-                              alt={item.product.title}
+                              
+                              src={item.thumbnail}
+                              alt={item.title}
                             />
                           </div>
                           <span>
-                            {item.product.title} - #{item.quantity} - $
-                            {item.product.discountPrice}
+                            {item.title} - #{item.quantity} - ₹
+                            {Math.round(item.price * (1-item.discountPercentage /100))}
                           </span>
                         </div>
                       ))}
                     </td>
                     <td className="py-3 px-0 text-center">
                       <div className="flex items-center justify-center">
-                        ${order.totalAmount}
+                        ₹{order.totalAmount}
                       </div>
                     </td>
                     <td className="py-3 px-0 text-center">
