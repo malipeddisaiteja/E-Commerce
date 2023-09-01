@@ -32,7 +32,7 @@ function Checkout() {
   const currentOrder = useSelector(selectCurrentOrder);
 
   const totalAmount = items.reduce(
-    (amount, item) => item.product.discountPrice * item.quantity + amount,
+    (amount, item) => Math.round(item.product.price * (1-item.product.discountPercentage /100)) * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -428,7 +428,7 @@ function Checkout() {
                                 </a>
                               </h3>
                               <p className="ml-4">
-                                ${item.product.discountPrice}
+                                ${Math.round(item.product.price * (1-item.product.discountPercentage /100))}
                               </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">

@@ -396,6 +396,7 @@ function DesktopFilter({ handleFilter, filters }) {
 }
 
 function ProductGrid({ products, status }) {
+  console.log(products);
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
@@ -413,7 +414,9 @@ function ProductGrid({ products, status }) {
             />
           ) : null}
           {products.map((product) => (
+            
             <Link to={`/product-detail/${product.id}`} key={product.id}>
+              
               <div className="group relative border-solid border-2 p-2 border-gray-200">
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                   <img
@@ -437,7 +440,7 @@ function ProductGrid({ products, status }) {
                   </div>
                   <div>
                     <p className="text-sm block font-medium text-gray-900">
-                      ${product.discountPrice}
+                      ${Math.round(product.price * (1-product.discountPercentage / 100))}
                     </p>
                     <p className="text-sm block line-through font-medium text-gray-400">
                       ${product.price}
